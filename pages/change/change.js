@@ -1,3 +1,5 @@
+const app = getApp()
+
 // pages/change/change.js
 Page({
 
@@ -5,7 +7,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    // 从全局获取所有的语言
+    langList: app.globalData.langList,
+    // 当前默认是什么语言，默认设置为英语
+    curLangIndex : app.globalData.curLang.index,
   },
 
   /**
