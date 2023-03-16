@@ -44,6 +44,8 @@ Page({
   onShow(){
     this.setData({
       curLangTxt:app.globalData.curLang.chs,
+    },()=>{
+      this.translateHandler()
     })
   },
   inputHandle(){

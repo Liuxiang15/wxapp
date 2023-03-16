@@ -20,5 +20,10 @@ Page({
     this.setData({
       curLangIndex:selectIndex
     })
+    // 重定向会丢失之前的填写记录
+    // wx.redirectTo({
+    //   url: '/pages/index/index',
+    // })
+    wx.navigateBack()
   }
 })
