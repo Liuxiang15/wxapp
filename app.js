@@ -21,5 +21,7 @@ App({
       {'chs': '荷兰语','lang': 'nl', 'index':12}],
       // 当前默认是什么语言，默认设置为英语
     curLang : {'chs': '英文','lang': 'en',"index": 0},
+    // 历史记录
+    history : []
   }
 })

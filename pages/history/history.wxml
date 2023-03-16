@@ -6,18 +6,10 @@
     <text class="iconfont icon-close">清除历史记录</text>
   </view>
   <!-- 历史记录 -->
-  <view class="list">
+  <view class="list" wx:for="{{historyList}}" wx:key="this">
     <view class="item">
-      <view>你好</view>
-      <view>hello</view>
-    </view>
-    <view class="item">
-      <view>你好</view>
-      <view>hello</view>
-    </view>
-    <view class="item">
-      <view>你好</view>
-      <view>hello</view>
+      <view>{{item.sourceTxt}}</view>
+      <view>{{item.resultTxt}}</view>
     </view>
   </view>
 </scroll-view>

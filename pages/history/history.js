@@ -1,18 +1,19 @@
 // pages/history/history.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    historyList:app.globalData.history
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    
   },
 
   /**
@@ -26,7 +27,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    // 注意：这里不设置的话数据只是最原始的，不会更新
+    this.setData({
+      historyList:app.globalData.history
+    })
   },
 
   /**
