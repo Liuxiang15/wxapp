@@ -10,20 +10,6 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
@@ -32,39 +18,24 @@ Page({
       historyList:app.globalData.history
     })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
+  clearHistory(){
+    // 1. 清除全局 history 的值，清除 historyList
+    app.globalData.history = [];
+    this.setData({
+      historyList:app.globalData.history
+    })
+    // 2. 清除本地缓存，下次进来的时候，历史记录也是空的
+    wx.removeStorage({
+      key: 'history',
+      success(){
+        console.log("本地缓存已清除")
+        wx.showToast({
+          title: '本地缓存已清除',
+          icon: "success",
+          duration: 1000
+        })
+      }
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
 })
