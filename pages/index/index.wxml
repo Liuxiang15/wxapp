@@ -6,11 +6,16 @@
   </view>
    <!-- 文本输入框 -->
    <view class="translateTxt">
-    <textarea placeholder="请输入您要翻译的文本"></textarea>
+    <textarea 
+      placeholder="请输入您要翻译的文本" 
+      bindblur="translateHandler"
+      bindinput="inputHandle"
+      model:value="{{query}}"
+      ></textarea>
   </view>
   <!-- 翻译结果 -->
    <view class="resultTxt">
       <view>译文</view>
-      <view class="content"></view>
+      <view class="content">{{content}}</view>
     </view>
 </view>
