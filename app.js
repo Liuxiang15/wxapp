@@ -1,7 +1,12 @@
 // app.js
 App({
   onLaunch() {
-    
+    wx.getStorage({
+      key:'history',
+      success:res=>{
+        this.globalData.history = res.data
+      }
+    })
   },
   // 全局数据，所有页面都可以使用的数据
   globalData: {
