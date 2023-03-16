@@ -1,8 +1,8 @@
 <view  class="container" >
   <!-- 目标语言选择 -->
   <view class="lanSelectContainer">
-    <text bindtap="gotoChange">翻译成英语</text>
-    <text class="iconfont icon-down"></text>
+    <text bindtap="gotoChange">翻译成{{curLangTxt}}</text>
+    <text bindtap="gotoChange" class="iconfont icon-down"></text>
   </view>
    <!-- 文本输入框 -->
    <view class="translateTxt">

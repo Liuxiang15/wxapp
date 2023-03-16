@@ -5,6 +5,7 @@ Page({
   data: {
     query:'',// 用户输入的要翻译的文本
     content : '', // 翻译的文本
+    curLangTxt:app.globalData.curLang.chs,
   },
   // 跳转到选择语言
   gotoChange(){
@@ -15,8 +16,12 @@ Page({
   // 翻译事件
   async translateHandler(){
     // 1. 拿到用户输入的值  2. 调用接口进行翻译
+    const query = this.data.query
+    if(!query){
+      return
+    }
     try {
-      const content = await transFunc(this.data.query, "zh", "en")
+      const content = await transFunc(query, "auto", app.globalData.curLang.lang)
       // 1）修改 content 的值，以便翻译结果能够显示出来
       this.setData({
         content
@@ -35,6 +40,11 @@ Page({
       console.error(err)
     }
     
+  },
+  onShow(){
+    this.setData({
+      curLangTxt:app.globalData.curLang.chs,
+    })
   },
   inputHandle(){
 

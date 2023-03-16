@@ -3,7 +3,9 @@
   class="container" 
   wx:for="{{langList}}" 
   wx:key="this"
-  data-id="{{index}}">
+  data-id="{{index}}"
+  bindtap="selectHandle"
+  >
   <view>
     {{item.chs}}
     <text 
