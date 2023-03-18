@@ -1,21 +1,2 @@
-<view  class="container" >
-  <!-- 目标语言选择 -->
-  <view class="lanSelectContainer">
-    <text bindtap="gotoChange">翻译成{{curLangTxt}}</text>
-    <text bindtap="gotoChange" class="iconfont icon-down"></text>
-  </view>
-   <!-- 文本输入框 -->
-   <view class="translateTxt">
-    <textarea 
-      placeholder="请输入您要翻译的文本" 
-      bindblur="translateHandler"
-      bindinput="inputHandle"
-      model:value="{{query}}"
-      ></textarea>
-  </view>
-  <!-- 翻译结果 -->
-   <view class="resultTxt">
-      <view>译文</view>
-      <view class="content">{{content}}</view>
-    </view>
-</view>
+<!--pages/index/index.wxml-->
+<text>pages/index/index.wxml</text>

@@ -1,54 +1,66 @@
-import transFunc from '../../utils/util.js'
-const app = getApp()
-
+// pages/index/index.js
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    query:'',// 用户输入的要翻译的文本
-    content : '', // 翻译的文本
-    curLangTxt:app.globalData.curLang.chs,
+
   },
-  // 跳转到选择语言
-  gotoChange(){
-    wx.navigateTo({
-      url: '/pages/change/change',
-    })
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad(options) {
+
   },
-  // 翻译事件
-  async translateHandler(){
-    // 1. 拿到用户输入的值  2. 调用接口进行翻译
-    const query = this.data.query
-    if(!query){
-      return
-    }
-    try {
-      const content = await transFunc(query, "auto", app.globalData.curLang.lang)
-      // 1）修改 content 的值，以便翻译结果能够显示出来
-      this.setData({
-        content
-      })
-      // 2）将此次翻译结果存储到全局的 history 里面
-      app.globalData.history.unshift({
-        sourceTxt: this.data.query,
-        resultTxt:content
-      })
-      // 3）将 history 存储到本地，方便下一次进入小程序的时候，能够加载之前的历史记录
-      wx.setStorage({
-        key:'history',
-        data:app.globalData.history
-      })
-    } catch(err){
-      console.error(err)
-    }
-    
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady() {
+
   },
-  onShow(){
-    this.setData({
-      curLangTxt:app.globalData.curLang.chs,
-    },()=>{
-      this.translateHandler()
-    })
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow() {
+
   },
-  inputHandle(){
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload() {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh() {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom() {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage() {
 
   }
 })
