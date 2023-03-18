@@ -1,11 +1,16 @@
 .container {
-  width:100%;
+  /* width:100%; */
+  width: calc(100% + 120rpx);
   height: 150rpx;
   outline:1px solid #ddd;
   margin-bottom: 10rpx;
+  /* 往左移 */
+  position: relative;
+  left: -120rpx;
 }
 .movable-view {
-  width:100%;
+  /* width:100%; */
+  width: calc(100% - 120rpx);
   height:100%;
   display:flex;
   justify-content: center;
@@ -18,6 +23,9 @@
   5. 非定位的常规流行盒
  */
   background-color: white;
+  /* 消息内容往右边移动 */
+  position: absolute;
+  left: 120rpx;
 }
 
 .movable-view image {
