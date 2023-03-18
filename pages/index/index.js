@@ -1,6 +1,5 @@
 // pages/index/index.js
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -48,61 +47,37 @@ Page({
         x: 0
       }
     ],
+    start_x : 0, // 记录开始拖动时的 x 值
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
+  touchstartHandle(event){
+    this.setData({
+      start_x : event.touches[0].clientX
+    })
   },
+  touchendHandle(event){
+    // 拖动结束时的 clientx
+    const current_x = event.changedTouches[0].clientX;
+    // 根据起始和结束的 clientx
+    // 我们就可以做一个拖动方向以及拖动距离的判断
+    const direction = current_x - this.data.start_x;
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
+    const index = ~~event.currentTarget.dataset.index;
+    const arr = [...this.data.messages];
 
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+    if(direction < 0){ 
+      // 往左
+      // 我们认为用户已经拖动了一段距离
+      // 哪怕他没有拖动满，我们应该将删除显示出来
+      arr[index].x = (direction < -30) ? -120 : 0
+      this.setData({
+        messages : arr
+      })
+      return
+    } 
+    // 往右
+    arr[index].x = 0;
+    this.setData({
+      messages : arr
+    })
   }
 })

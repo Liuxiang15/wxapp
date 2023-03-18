@@ -7,6 +7,10 @@
     direction="horizontal"
     out-of-bounds
     friction="150"
+    x="{{item.x}}"
+    bindtouchstart="touchstartHandle"
+    bindtouchend="touchendHandle"
+    data-index="{{index}}"
   >
     <!-- 头像 -->
     <image src="{{item.avatar}}" mode=""/>
