@@ -9,22 +9,13 @@ Component({
       const item = this.properties.item;
       // 2. 从全局数据中找到这一项
       const listItem = app.globalData.list.find(i => i.content === item.content);
-      console.log('item listItem app.globalData.list', item, listItem,  app.globalData.list);
-
 
       // 3. 修改状态，修改完毕后给出提示
       listItem.isComplete = !listItem.isComplete;
-      if (listItem.isComplete) {
-        wx.showToast({
-          title: '标记【完成】',
-          icon: 'success'
-        })
-      } else {
-        wx.showToast({
-          title: '标记【未完成】',
-          icon: 'success'
-        })
-      }
+      wx.showToast({
+        title: `标记${listItem.isComplete ? '完成': '未完成'}`,
+        icon: 'success'
+      })
       // 4. 修改当前这一项的完成状态
       // 注意：这里只设置了isComplete，会导致content丢失
       // 如果不触发下面的fresh， 当前item就没有content字段

@@ -9,6 +9,15 @@ Page({
   },
   inputHandle(){},
   add(){
+    // 判断输入的代办是否存在
+    const flag = app.globalData.list.some(item=>item.content === this.data.newContent)
+    if(flag){
+      wx.showToast({
+        title: '任务已存在，请重新输入',
+        icon:'error'
+      })
+      return
+    }
     // 添加新的待办事项
     if(this.data.newContent){
       // 添加到全局数据
