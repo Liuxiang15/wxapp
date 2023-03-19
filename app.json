@@ -1,32 +1,13 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/change/change",
-    "pages/history/history"
+    "pages/logs/logs"
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#4b3c96",
-    "navigationBarTitleText": "小爱翻译",
-    "navigationBarTextStyle":"white",
-    "backgroundColor": "#4b3c96"
-  },
-  "tabBar": {
-     "borderStyle": "white",
-    "position":"bottom",
-    "list": [
-      {
-      "pagePath": "pages/index/index",
-      "text": "翻译",
-      "iconPath": "imgs/icon-1.png",
-      "selectedIconPath": "imgs/sel-icon-1.png"
-    },
-    {
-      "pagePath": "pages/history/history",
-      "text": "历史",
-      "iconPath": "imgs/icon-2.png",
-      "selectedIconPath": "imgs/sel-icon-2.png"
-    }]
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Hello",
+    "navigationBarTextStyle":"black"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

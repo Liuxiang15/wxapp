@@ -1,54 +1,48 @@
-import transFunc from '../../utils/util.js'
+// index.js
+// 获取应用实例
 const app = getApp()
 
 Page({
   data: {
-    query:'',// 用户输入的要翻译的文本
-    content : '', // 翻译的文本
-    curLangTxt:app.globalData.curLang.chs,
+    motto: 'Hello World',
+    userInfo: {},
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    canIUseGetUserProfile: false,
+    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName') // 如需尝试获取用户信息可改为false
   },
-  // 跳转到选择语言
-  gotoChange(){
+  // 事件处理函数
+  bindViewTap() {
     wx.navigateTo({
-      url: '/pages/change/change',
+      url: '../logs/logs'
     })
   },
-  // 翻译事件
-  async translateHandler(){
-    // 1. 拿到用户输入的值  2. 调用接口进行翻译
-    const query = this.data.query
-    if(!query){
-      return
-    }
-    try {
-      const content = await transFunc(query, "auto", app.globalData.curLang.lang)
-      // 1）修改 content 的值，以便翻译结果能够显示出来
+  onLoad() {
+    if (wx.getUserProfile) {
       this.setData({
-        content
+        canIUseGetUserProfile: true
       })
-      // 2）将此次翻译结果存储到全局的 history 里面
-      app.globalData.history.unshift({
-        sourceTxt: this.data.query,
-        resultTxt:content
-      })
-      // 3）将 history 存储到本地，方便下一次进入小程序的时候，能够加载之前的历史记录
-      wx.setStorage({
-        key:'history',
-        data:app.globalData.history
-      })
-    } catch(err){
-      console.error(err)
     }
-    
   },
-  onShow(){
-    this.setData({
-      curLangTxt:app.globalData.curLang.chs,
-    },()=>{
-      this.translateHandler()
+  getUserProfile(e) {
+    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+    wx.getUserProfile({
+      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        console.log(res)
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+      }
     })
   },
-  inputHandle(){
-
+  getUserInfo(e) {
+    // 不推荐使用getUserInfo获取用户信息，预计自2021年4月13日起，getUserInfo将不再弹出弹窗，并直接返回匿名的用户个人信息
+    console.log(e)
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
   }
 })
