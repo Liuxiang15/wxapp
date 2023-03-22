@@ -1,66 +1,56 @@
-// pages/cloudFile/cloudFile.js
+import Notify from '@vant/weapp/notify/notify';
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    fileList: [],
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
+  // 读取用户选择的图片
+  // 回填到 fileList 里面
+  // 从而让用户选择的图片能够显示出来
+  afterRead(event){
+    const { file } = event.detail;
+    console.log(file);
+    const newFileList = [...this.data.fileList];
+    newFileList.push({
+      url : file.url
+    });
+    this.setData({
+      fileList : newFileList
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+  // 删除已经选择的图片
+  deleteHandle(event){
+    const index = event.detail.index;
+    const newFileList = [...this.data.fileList];
+    newFileList.splice(index, 1);
+    this.setData({
+      fileList : newFileList
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+  // 将图片上传到云端
+  uploadHandle(){
+    wx.showLoading({
+      title: '上传中',
+    });
+    for(let i=0;i<this.data.fileList.length;i++){
+      // 拿到当前这张图片的 url
+      const url = this.data.fileList[i].url;
+      const name = Math.random() * 10000;
+      const cloudPath = name + url.match(/\.[^.]+?$/)[0];
+      wx.cloud.uploadFile({
+        cloudPath,
+        filePath : url,
+        success: res=> {
+          console.log(res.fileID);
+        },
+        fail : console.error,
+        complete: ()=>{
+          if(i === this.data.fileList.length - 1){
+            // 上传的是最后一张
+            wx.hideLoading();
+            Notify({ type: 'success', message: '上传文件成功' });
+          }
+        }
+      });
+    }
   }
 })
