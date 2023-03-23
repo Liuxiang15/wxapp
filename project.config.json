@@ -38,7 +38,8 @@
       "disablePlugins": [],
       "outputPath": ""
     },
-    "condition": false
+    "condition": false,
+    "ignoreUploadUnusedFiles": false
   },
   "compileType": "miniprogram",
   "libVersion": "2.19.4",
@@ -48,5 +49,7 @@
   "editorSetting": {
     "tabIndent": "insertSpaces",
     "tabSize": 2
-  }
+  },
+  "ignoreDevUnusedFiles": false,
+  "ignoreUploadUnusedFiles": false
 }
