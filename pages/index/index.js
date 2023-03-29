@@ -13,6 +13,12 @@ Page({
       url: '/pages/change/change',
     })
   },
+  onLoad(){
+    wx.showShareMenu({
+      withShareTicket : true,
+      menus : ["shareAppMessage", "shareTimeline"]
+    })
+  },
   // 翻译事件
   async translateHandler(){
     // 1. 拿到用户输入的值  2. 调用接口进行翻译
@@ -50,5 +56,14 @@ Page({
   },
   inputHandle(){
 
+  },
+  // 该生命周期钩子函数会在分享内容的时候触发
+  onShareAppMessage(){
+    // 此事件处理函数需要 return 一个 Object
+    return {
+      title : "这是一个可以翻译13种语言的小程序",
+      path : "/pages/index/index",
+      imageUrl : "/imgs/share.jpeg"
+    }
   }
 })
