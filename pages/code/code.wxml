@@ -10,7 +10,9 @@
         </view>
       </view>
       <!-- 生成的二维码对应的图片 -->
-      <image src='{{imgTempFilePath}}' style='display:block;width:300rpx;height:300rpx;margin:0 auto;'></image>
+      <image src='{{imgTempFilePath}}'
+      data-url='{{imgTempFilePath}}' 
+      style='display:block;width:300rpx;height:300rpx;margin:0 auto;' bindlongpress="saveImage"></image>
       <view class='page__db_spaceing'>
         <button class='weui-btn' bindtap='onGenerate' type='primary'>生成</button>
       </view>

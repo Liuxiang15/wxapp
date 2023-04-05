@@ -16,5 +16,17 @@ Page({
       }
     })
   },
+  saveImage(e){
+    const url = e.currentTarget.dataset.url
+    wx.saveImageToPhotosAlbum({
+       filePath:url,
+       success(res) { 
+        console.log(res);
+       },
+       fail(res){
+        console.log(res);
+       }
+    })
+  },
   bindInput(){}
 })
