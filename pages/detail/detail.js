@@ -1,66 +1,41 @@
 // pages/detail/detail.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    id : null,
+    scanResult : {}
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
+  // 获取缓存的数据
+  onLoad(options){
+    // console.log(options.id)
+    // 从缓存中获取对应 id 的扫描内容
+    wx.getStorage({
+      key : "scanLogs",
+      success : res => {
+        // console.log(res.data[options.id]);
+        this.setData({
+          scanResult : res.data[options.id],
+          id : options.id
+        })
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+  // 删除
+  onDelete(){
+    // 从缓存中获取对应 id 的扫描内容
+    wx.getStorage({
+      key : "scanLogs",
+      success : res => {
+       let scanLogs = res.data;
+       scanLogs.splice(this.data.id, 1);
+       // 更新本地存储数据
+       wx.setStorageSync('scanLogs', scanLogs);
+       wx.navigateBack();
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+  onCopy(){
+    wx.setClipboardData({
+      data: this.data.scanResult.text,
+    })
   }
 })
