@@ -55,9 +55,5 @@ Page({
       }
     })
   },
-  onCopy(){
-    wx.setClipboardData({
-      data: this.data.scanResult.text,
-    })
-  }
+  
 })
