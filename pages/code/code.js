@@ -1,66 +1,20 @@
-// pages/code/code.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    codeText : "", // 存储用户输入的二维码文本
+    imgTempFilePath : "", // 生成的二维码图片路径
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
+  // 根据文本来生成二维码图片
+  onGenerate(){
+    // 我们请求接口之后，会生成一张二维码的图片
+    // 我们需要将这张图片下载下来
+    wx.downloadFile({
+      url:"http://apis.juhe.cn/qrcode/api?key=5a4f1232be1db0388b7544ebee55e542&type=2&text="+this.data.codeText,
+      success : res => {
+        this.setData({
+          imgTempFilePath : res.tempFilePath
+        })
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
+  bindInput(){}
 })
