@@ -8,7 +8,6 @@
    <view class="translateTxt">
     <textarea 
       placeholder="请输入你的问题" 
-      bindblur="translateHandler"
       bindinput="inputHandle"
       model:value="{{query}}"
       ></textarea>
