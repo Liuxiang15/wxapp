@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/ask/index",
     "pages/index/index",
     "pages/change/change",
     "pages/history/history"
@@ -7,7 +8,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#4b3c96",
-    "navigationBarTitleText": "小爱翻译",
+    "navigationBarTitleText": "小爱智能助手",
     "navigationBarTextStyle":"white",
     "backgroundColor": "#4b3c96"
   },
@@ -16,6 +17,12 @@
     "position":"bottom",
     "list": [
       {
+      "pagePath": "pages/ask/index",
+      "text": "AI问答",
+      "iconPath": "imgs/icon-0.png",
+      "selectedIconPath": "imgs/sel-icon-0.png"
+    },
+    {
       "pagePath": "pages/index/index",
       "text": "翻译",
       "iconPath": "imgs/icon-1.png",
