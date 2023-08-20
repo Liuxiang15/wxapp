@@ -134,7 +134,7 @@ Page({
       var authorization = weBtoa(authorizationOrigin)
       // url = `${url}?authorization=${wx.arrayBufferToBase64(authorization)}&date=${date}&host=${host}`
       // console.log('authorization', authorization)
-      url = `${url}?authorization=${authorization}&date=${date}&host=${host}`
+      url = `${url}?authorization=${authorization}&date=${encodeURI(date)}&host=${host}`
       resolve(url)
     })
   },
