@@ -8,10 +8,12 @@
    <view class="translateTxt">
     <textarea 
       placeholder="请输入你的问题" 
+      bindblur="sendBtnHandle"
       bindinput="inputHandle"
       model:value="{{query}}"
       ></textarea>
       <button type="primary" class="send-btn" size="mini" bindtap="sendBtnHandle">提问</button>
+      
 
   </view>
   <!-- 翻译结果 -->
