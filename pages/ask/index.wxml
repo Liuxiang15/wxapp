@@ -1,0 +1,23 @@
+<view  class="container" >
+  <!-- 目标语言选择 -->
+  <!-- <view class="lanSelectContainer">
+    <text bindtap="gotoChange">翻译成{{curLangTxt}}</text>
+    <text bindtap="gotoChange" class="iconfont icon-down"></text>
+  </view> -->
+   <!-- 文本输入框 -->
+   <view class="translateTxt">
+    <textarea 
+      placeholder="请输入你的问题" 
+      bindblur="translateHandler"
+      bindinput="inputHandle"
+      model:value="{{query}}"
+      ></textarea>
+      <button type="primary" class="send-btn" size="mini" bindtap="sendBtnHandle">提问</button>
+
+  </view>
+  <!-- 翻译结果 -->
+   <view class="resultTxt">
+      <view></view>
+      <view class="content">{{content}}</view>
+    </view>
+</view>
